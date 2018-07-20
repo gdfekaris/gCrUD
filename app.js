@@ -4,17 +4,26 @@ $(document).ready(function() {
 
   // });
   
-  let $title = $(`.input-field-title`).text();
+  
   
   $(`.store-btn`).on(`click`, function() {
     //event.preventDefault(); //useful to know these two jQuery funcs
     //even.stopPropagation();
     
-    localStorage.setItem('hrext', 'three is the best');
+    let $title = $(`.input-field-title`).val();
+    let $content = $(`.input-field-body`).val();
+    
+    localStorage.setItem('title', $title);
+    localStorage.setItem('content', $content);
   });
 
   $(`.get-btn`).on('click', function() {
-    console.log(localStorage.getItem('hrext'));
+    let titleValue = localStorage.getItem('title');
+    let contentValue = localStorage.getItem('content');
+
+    $(`.display-retrieved`).html(`<p>${titleValue} ${contentValue}</p>`)
+
+    //console.log(titleValue, contentValue);
   });
 
   $(`.delete-btn`).on('click', function() {
