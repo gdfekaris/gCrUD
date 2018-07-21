@@ -13,21 +13,27 @@ $(document).ready(function() {
     let $title = $(`.input-field-title`).val();
     let $content = $(`.input-field-body`).val();
     
-    localStorage.setItem('title', $title);
-    localStorage.setItem('content', $content);
+    localStorage.setItem($title, $content);
+
+    // $(`.input-field-title`).val(``);
+    // $(`.input-field-body`).val(``);
   });
 
   $(`.get-btn`).on('click', function() {
-    let titleValue = localStorage.getItem('title');
-    let contentValue = localStorage.getItem('content');
+    let userFile = $(`.input-field-get`).val();
+    let getThis = localStorage.getItem(userFile);
 
-    $(`.display-retrieved`).html(`<p>${titleValue} ${contentValue}</p>`)
+    //$(`.display-retrieved`).html(`<p>${userFile} ${getThis}</p>`);
 
-    //console.log(titleValue, contentValue);
+    $(`.input-field-title`).val(`${userFile}`);
+    $(`.input-field-body`).val(`${getThis}`);
+
   });
 
   $(`.delete-btn`).on('click', function() {
-    localStorage.removeItem('hrext');
+    let deleteValue = $(`.input-field-delete`).val();
+
+    localStorage.removeItem(deleteValue);
   });
 
 });
