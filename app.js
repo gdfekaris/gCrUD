@@ -1,10 +1,7 @@
 $(document).ready(function() {
-
-  // $().on('click', function() {
-
-  // });
-  
-  
+  const editor = ace.edit("editor");
+  editor.setTheme("ace/theme/monokai");
+  editor.session.setMode("ace/mode/javascript");
   
   $(`.store-btn`).on(`click`, function() {
     //event.preventDefault(); //useful to know these two jQuery funcs
@@ -35,5 +32,9 @@ $(document).ready(function() {
 
     localStorage.removeItem(deleteValue);
   });
+
+  // $().on('click', function() {
+
+  // });
 
 });

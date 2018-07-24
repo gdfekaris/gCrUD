@@ -7,21 +7,36 @@
       integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
       crossorigin="anonymous">
     </script>
+    <script 
+      src="ace-builds-master/src-noconflict/ace.js" 
+      type="text/javascript" 
+      charset="utf-8">
+    </script>
     <link rel="stylesheet" href="style.css">
-    <script src="app.js"></script>
   </head>
   <body>
-    <div id="main-container"> 
-      <input class="input-field-title" type="text" placeholder="//new key">
-      <textarea rows="10" cols="50" class="input-field-body" placeholder="//your code here"></textarea>
-      <button class="store-btn">save snippet</button>
-
+    <div id="main-container">
+      <div id="title">
+        <h1>gquiv</h1>
+      </div>
+      <div id="store-container">
+        <input class="input-field-title" type="text" placeholder="//new key">
+        <!-- <textarea rows="10" cols="50" class="input-field-body" placeholder="//your code here"></textarea> -->
+        <button class="store-btn">save snippet</button>
+      </div>
       <div id="get-delete-container">
         <input class="input-field-get" type="text" placeholder="//get this key">
         <input class="input-field-delete" type="text" placeholder="//delete this key">
         <button class="get-btn">get</button>
         <button class="delete-btn">delete</button> 
       </div>
+
+      <div id="editor_wrapper">
+        <div id="editor">//your code here</div>
+      </div>
+      
     </div>
+    <!-- <script src="ace-init.js"></script> -->
+    <script src="app.js"></script>
   </body>
 <html>

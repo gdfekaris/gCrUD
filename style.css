@@ -1,73 +1,91 @@
 body {
-  background-color: #005aff;
+  background-color: #8859ff;
 }
 
 #main-container {
   display: grid;
-  grid-template-columns: 50%, 50%;
-  grid-template-rows: 25%, 25%, 25%, 25%;
-  grid-template-areas: 
-    "leftside-head rightside-head"
-    "leftside-contA rightside-contA"
-    "leftside-contB rightside-contB"
-    "leftside-foot rightside-foot";
-}
-
-#get-delete-container {
-  grid-area: rightside-contB;
-  display: grid;
+  grid-template-columns: auto;
   grid-template-rows: auto;
   grid-template-areas: 
-    "topR"
-    "midRA"
-    "midRB"
-    "botR";
+    "AAa AAa AAa"
+    "Aa Ab Ac"
+    "Ba Bb Bc"
+    "Ca Cb Cc";
+}
+
+#editor { 
+  position: absolute;
+  border-left-style: solid;
+  border-left-width: 30px;
+  border-left-color: #a9ff4e;
+  top: 140px;
+  right: 10px;
+  bottom: 10px;
+  left: 10px;
+}
+
+#title {
+  grid-area: AAa;
+  justify-self: center;
+  margin-top: -20px;
+  margin-bottom: -15px;
+}
+
+/* within store-container */
+#store-container {
+  grid-area: Aa;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "aA aB"
+    "bA bB"
 }
 
 .store-btn {
-  grid-area: leftside-contA;
-  justify-self: left;
-  margin-left: 20px;
-}
-
-.input-field-title{
-  grid-area: leftside-contB;
-  justify-self: left;
-  max-width: 120px;
-  max-height: 12px;
-  margin-left: 20px;
-}
-
-/* textarea needs to auto resize with browser window proportions.*/
-.input-field-body {
-  grid-area: leftside-foot;
-  justify-self: left;
-  margin-top: -85px;
-  margin-left: 20px;
-}
-
-/* within #get-delete-container */
-
-.get-btn {
-  grid-area: topR;
-  justify-self: left;
-}
-
-.input-field-get {
-  grid-area: midRA;
-  justify-self: left;
-  margin-top: 5px;
-}
-
-.delete-btn {
-  grid-area: midRB;
+  grid-area: aA;
   justify-self: left;
   margin-top: 20px;
 }
 
-.input-field-delete {
-  grid-area: botR;
+.input-field-title{
+  grid-area: bA;
   justify-self: left;
+  margin-top: 5px;
+}
+
+/* within get-delete-conatiner */
+#get-delete-container {
+  grid-area: Ac;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "aA aB"
+    "bA bB"
+}
+
+.get-btn {
+  grid-area: aA;
+  justify-self: right;
+  margin-top: 20px;
+}
+
+.input-field-get {
+  grid-area: bA;
+  justify-self: right;
+  margin-top: 5px;
+}
+
+.delete-btn {
+  grid-area: aB;
+  justify-self: right;
+  margin-top: 20px;
+}
+
+.input-field-delete {
+  grid-area: bB;
+  justify-self: right;
   margin-top: 5px;
 }
 
