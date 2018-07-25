@@ -2,37 +2,32 @@ $(document).ready(function() {
   const editor = ace.edit("editor");
   let editorTheme = editor.setTheme("ace/theme/monokai");
   let editorLanguage = editor.session.setMode("ace/mode/javascript");
+  editor.setValue(`//your code here`);
   editorTheme;
   editorLanguage;
   
   $(`.store-btn`).on(`click`, function() {
     let $title = $(`.input-field-title`).val();
     let content = editor.getValue();
-    
     localStorage.setItem($title, content);
   });
 
   $(`.get-btn`).on('click', function() {
     let userFile = $(`.input-field-get`).val();
     let getThis = localStorage.getItem(userFile);
-
     $(`.input-field-title`).val(`${userFile}`);
     editor.session.setValue(`${getThis}`);
-
     $(`.input-field-get`).val(``);
   });
 
   $(`.delete-btn`).on('click', function() {
     let deleteValue = $(`.input-field-delete`).val();
-
     localStorage.removeItem(deleteValue);
-
     $(`.input-field-delete`).val(``);
   });
 
   $(`#gquiv`).on('click', function() {
     let $theme = $(`#theme`).attr(`href`);
-
     if ($theme === `lavenderStyles.css`) {
       $(`#theme`).attr(`href`, `marineStyles.css`)
     }
@@ -56,7 +51,7 @@ $(document).ready(function() {
       editorTheme = editor.setTheme("ace/theme/terminal"); 
       flag++;
     } else if(flag === 2) {
-      editorTheme = editor.setTheme("ace/theme/ambiance");
+      editorTheme = editor.setTheme("ace/theme/twilight");
       flag++;
     } else if(flag === 3) {
       editorTheme = editor.setTheme("ace/theme/monokai");
@@ -66,7 +61,6 @@ $(document).ready(function() {
 
   $(`#lang`).on('click', function() { 
     let lang = $(`#lang`).text();
-
     if (editor.getValue() === `//your code here`) {
         editor.setValue(`<!DOCTYPE html>\n<!-- your code here -->`);
     } else if (editor.getValue() === `<!DOCTYPE html>\n<!-- your code here -->`) {
@@ -74,7 +68,6 @@ $(document).ready(function() {
     } else if (editor.getValue() === `/*your code here*/`) {
         editor.setValue(`//your code here`);
     }
-
     if (lang === `js`) {
       $(`#lang`).text(`html`);
       editorLanguage = editor.session.setMode("ace/mode/html");
