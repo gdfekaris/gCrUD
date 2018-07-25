@@ -16,7 +16,7 @@ $(document).ready(function() {
     } else {
       let historyArray = localStorage.getItem(`gquivSnippets`);
       history = JSON.parse(localStorage.getItem(`gquivSnippets`));
-      historyFlag = history.length - 1; 
+      historyFlag = history.length; 
     }
   }();
 
@@ -42,6 +42,12 @@ $(document).ready(function() {
     $(`.input-field-title`).val(`${userFile}`);
     editor.session.setValue(`${getThis}`);
     $(`.input-field-get`).val(``);
+    //console.log(userFile === 'test6');
+    history.forEach(function(e, i) {
+      if (userFile === e) {
+        historyFlag = i;
+      }
+    })
   };
   const deleteSnippet = function() {
     let deleteValue = $(`.input-field-delete`).val();
@@ -117,6 +123,9 @@ $(document).ready(function() {
   const getHistory = function(e) {
     if (e.target.className === `back`) {
       historyFlag--;
+      if (historyFlag < 0) {
+        historyFlag = 0;
+      }
       let backSnip = JSON.stringify(history[historyFlag]);
       let slicedBackSnip = backSnip.slice(1, -1)
       let userFileBackSnip = slicedBackSnip;
@@ -126,6 +135,9 @@ $(document).ready(function() {
     } 
     if (e.target.className === `forward`) {
       historyFlag++;
+      if (historyFlag > (history.length - 1)) {
+        historyFlag = history.length - 1;
+      }
       let forwardSnip = JSON.stringify(history[historyFlag]);
       let slicedForwardSnip = forwardSnip.slice(1, -1)
       let userFileForwardSnip = slicedForwardSnip;
