@@ -6,11 +6,9 @@ $(document).ready(function() {
   editorTheme;
   editorLanguage;
 
-  let flag = 0;
-
-  $(`#gquiv`).css( 'cursor', 'default' );
-  $(`#dot`).css( 'cursor', 'default' );
-  $(`#lang`).css( 'cursor', 'default' );
+  $(`#gquiv`).css( 'cursor', 'pointer' );
+  $(`#dot`).css( 'cursor', 'pointer' );
+  $(`#lang`).css( 'cursor', 'pointer' );
 
   const save = function() {
     let $title = $(`.input-field-title`).val();
@@ -45,19 +43,22 @@ $(document).ready(function() {
     }
   };
   const changeCodepen = function() {
-    if(flag === 0) {
-      editorTheme = editor.setTheme("ace/theme/chrome");
-      flag++;
-    } else if(flag === 1) {
-      editorTheme = editor.setTheme("ace/theme/terminal"); 
-      flag++;
-    } else if(flag === 2) {
-      editorTheme = editor.setTheme("ace/theme/twilight");
-      flag++;
-    } else if(flag === 3) {
-      editorTheme = editor.setTheme("ace/theme/monokai");
-      flag = 0;
-    }
+    let flag = 0;
+    return function() {
+      if(flag === 0) {
+        editorTheme = editor.setTheme("ace/theme/chrome");
+        flag++;
+      } else if(flag === 1) {
+        editorTheme = editor.setTheme("ace/theme/terminal"); 
+        flag++;
+      } else if(flag === 2) {
+        editorTheme = editor.setTheme("ace/theme/twilight");
+        flag++;
+      } else if(flag === 3) {
+        editorTheme = editor.setTheme("ace/theme/monokai");
+        flag = 0;
+      }
+    };
   };
   const changeLang = function() { 
     let lang = $(`#lang`).text();
@@ -97,7 +98,7 @@ $(document).ready(function() {
   $(`.get-btn`).on('click', get);
   $(`.delete-btn`).on('click', deleteSnippet);
   $(`#gquiv`).on('click', changeSkin);
-  $(`#dot`).on('click', changeCodepen);
+  $(`#dot`).on('click', changeCodepen());
   $(`#lang`).on('click', changeLang);
   $(`.input-field-title`).on('keypress', pressEnter);
   $(`.input-field-get`).on('keypress', pressEnter);
