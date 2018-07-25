@@ -55,6 +55,8 @@ $(document).ready(function() {
     history.forEach(function(e, i) {
       if (deleteValue === e) {
         history.splice(i, 1);
+        let historyString = JSON.stringify(history);
+        localStorage.setItem(`gquivSnippets`, historyString);
       }
     })
   };
