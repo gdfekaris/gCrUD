@@ -98,7 +98,10 @@ body {
   justify-self: left;
   margin-top: 20px;
   background-color: #FFD700;
+  border-top-style: none;
   border-bottom-style: none;
+  border-left-style: none;
+  border-right-style: none;
   outline: none;
   font-family: "Roboto Mono", monospace;
   color: #757575;
@@ -141,7 +144,11 @@ body {
   justify-self: right;
   margin-top: 20px;
   background-color: #FFD700;
+  border-top-style: none;
   border-bottom-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  outline: none;
   font-family: "Roboto Mono", monospace;
   color: #757575;
 }
@@ -172,7 +179,11 @@ body {
   justify-self: right;
   margin-top: 20px;
   background-color: #FFD700;
+  border-top-style: none;
   border-bottom-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  outline: none;
   font-family: "Roboto Mono", monospace;
   color: #757575;
 }

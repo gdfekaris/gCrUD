@@ -5,28 +5,31 @@ $(document).ready(function() {
   editor.setValue(`//your code here`);
   editorTheme;
   editorLanguage;
-  
-  $(`.store-btn`).on(`click`, function() {
+
+  let flag = 0;
+
+  $(`#gquiv`).css( 'cursor', 'default' );
+  $(`#dot`).css( 'cursor', 'default' );
+  $(`#lang`).css( 'cursor', 'default' );
+
+  const save = function() {
     let $title = $(`.input-field-title`).val();
     let content = editor.getValue();
     localStorage.setItem($title, content);
-  });
-
-  $(`.get-btn`).on('click', function() {
+  };
+  const get = function() {
     let userFile = $(`.input-field-get`).val();
     let getThis = localStorage.getItem(userFile);
     $(`.input-field-title`).val(`${userFile}`);
     editor.session.setValue(`${getThis}`);
     $(`.input-field-get`).val(``);
-  });
-
-  $(`.delete-btn`).on('click', function() {
+  };
+  const deleteSnippet = function() {
     let deleteValue = $(`.input-field-delete`).val();
     localStorage.removeItem(deleteValue);
     $(`.input-field-delete`).val(``);
-  });
-
-  $(`#gquiv`).on('click', function() {
+  };
+  const changeSkin = function() {
     let $theme = $(`#theme`).attr(`href`);
     if ($theme === `lavenderStyles.css`) {
       $(`#theme`).attr(`href`, `marineStyles.css`)
@@ -40,10 +43,8 @@ $(document).ready(function() {
     if ($theme === `titaniumStyles.css`) {
       $(`#theme`).attr(`href`, `lavenderStyles.css`)
     }
-  });
-
-  let flag = 0;
-  $(`#dot`).on('click', function() {
+  };
+  const changeCodepen = function() {
     if(flag === 0) {
       editorTheme = editor.setTheme("ace/theme/chrome");
       flag++;
@@ -57,9 +58,8 @@ $(document).ready(function() {
       editorTheme = editor.setTheme("ace/theme/monokai");
       flag = 0;
     }
-  });
-
-  $(`#lang`).on('click', function() { 
+  };
+  const changeLang = function() { 
     let lang = $(`#lang`).text();
     if (editor.getValue() === `//your code here`) {
         editor.setValue(`<!DOCTYPE html>\n<!-- your code here -->`);
@@ -80,5 +80,26 @@ $(document).ready(function() {
       $(`#lang`).text(`js`);
       editor.session.setMode("ace/mode/javascript");
     }
-  });
+  };
+  const pressEnter = function (e) {
+    if((e.which === 13) && (e.target.className === `input-field-title`)){
+      save();
+    }
+    if((e.which === 13) && (e.target.className === `input-field-get`)){
+      get();
+    }
+    if((e.which === 13) && (e.target.className === `input-field-delete`)){
+      deleteSnippet();
+    }
+  };
+  
+  $(`.store-btn`).on(`click`, save);
+  $(`.get-btn`).on('click', get);
+  $(`.delete-btn`).on('click', deleteSnippet);
+  $(`#gquiv`).on('click', changeSkin);
+  $(`#dot`).on('click', changeCodepen);
+  $(`#lang`).on('click', changeLang);
+  $(`.input-field-title`).on('keypress', pressEnter);
+  $(`.input-field-get`).on('keypress', pressEnter);
+  $(`.input-field-delete`).on('keypress', pressEnter);
 });
