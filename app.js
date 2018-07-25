@@ -42,7 +42,6 @@ $(document).ready(function() {
     $(`.input-field-title`).val(`${userFile}`);
     editor.session.setValue(`${getThis}`);
     $(`.input-field-get`).val(``);
-    //console.log(userFile === 'test6');
     history.forEach(function(e, i) {
       if (userFile === e) {
         historyFlag = i;
@@ -53,6 +52,11 @@ $(document).ready(function() {
     let deleteValue = $(`.input-field-delete`).val();
     localStorage.removeItem(deleteValue);
     $(`.input-field-delete`).val(``);
+    history.forEach(function(e, i) {
+      if (deleteValue === e) {
+        history.splice(i, 1);
+      }
+    })
   };
   const changeSkin = function() {
     let $theme = $(`#theme`).attr(`href`);
