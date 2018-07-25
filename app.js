@@ -5,8 +5,10 @@ $(document).ready(function() {
   editorTheme;
   editorLanguage;
 
-  //editorLanguage = editor.session.setMode("ace/mode/html")
-  //editorTheme = editor.setTheme("ace/theme/terminal")
+  //more themes
+  // let terminal = editor.setTheme("ace/theme/terminal")
+  // let tomorrow = editor.setTheme("ace/theme/tomorrow");
+  // let tomorrow_night_eighties = editor.setTheme("ace/theme/tomorrow_night_eighties");
   
   $(`.store-btn`).on(`click`, function() {
     let $title = $(`.input-field-title`).val();
@@ -34,28 +36,56 @@ $(document).ready(function() {
   });
 
   $(`#gquiv`).on('click', function() {
-    console.log('gquiv button works');
+    let $theme = $(`#theme`).attr(`href`);
+
+    if ($theme === `lavenderStyles.css`) {
+      $(`#theme`).attr(`href`, `marineStyles.css`)
+    }
+    if ($theme === `marineStyles.css`) {
+      $(`#theme`).attr(`href`, `cobaltStyles.css`)
+    }
+    if ($theme === `cobaltStyles.css`) {
+      $(`#theme`).attr(`href`, `titaniumStyles.css`)
+    }
+    if ($theme === `titaniumStyles.css`) {
+      $(`#theme`).attr(`href`, `lavenderStyles.css`)
+    }
+  });
+
+  let flag = 0;
+  $(`#dot`).on('click', function() {
+    if(flag === 0) {
+      editorTheme = editor.setTheme("ace/theme/tomorrow");
+      flag++;
+    } else if(flag === 1) {
+      editorTheme = editor.setTheme("ace/theme/terminal"); 
+      flag++;
+    } else if(flag === 2) {
+      editorTheme = editor.setTheme("ace/theme/tomorrow_night_eighties");
+      flag++;
+    } else if(flag === 3) {
+      editorTheme = editor.setTheme("ace/theme/monokai");
+      flag = 0;
+    }
   });
 
   $(`#lang`).on('click', function() { 
     let lang = $(`#lang`).text();
 
-    if (lang === `.js`) {
-      $(`#lang`).text(`.html`);
-      editorLanguage = editor.session.setMode("ace/mode/html")
+    if (lang === `js`) {
+      $(`#lang`).text(`html`);
+      editorLanguage = editor.session.setMode("ace/mode/html");
+      //$(`#editor`).html(`<div id="editor"><!-- your code here --></div>`)
     }
-    if (lang === `.html`) {
-      $(`#lang`).text(`.css`);
-      editorLanguage = editor.session.setMode("ace/mode/css")
+    if (lang === `html`) {
+      $(`#lang`).text(`css`);
+      editorLanguage = editor.session.setMode("ace/mode/css");
+      //$(`#editor`).text(`<div id="editor">/*your code here*/</div>`)
     }
-    if (lang === `.css`) {
-      $(`#lang`).text(`.js`);
+    if (lang === `css`) {
+      $(`#lang`).text(`js`);
       editor.session.setMode("ace/mode/javascript");
+      //$(`#editor`).text(`<div id="editor">//your code here</div>`)
     }
   });
-
-  // $().on('click', function() {
-
-  // });
-
 });

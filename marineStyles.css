@@ -1,13 +1,13 @@
 body {
-  background-color: #8859ff; 
+  background-color: #1B2554; 
   border-top-style: solid;
   border-top-width: 1px;
-  border-top-color: #a9ff4e;
+  border-top-color: #2FFDA2;
   border-left-style: none;
   border-right-style: none;
   border-bottom-style: solid;
   border-bottom-width: 1px;
-  border-bottom-color: #a9ff4e;
+  border-bottom-color: #2FFDA2;
 }
 
 #main-container {
@@ -26,7 +26,7 @@ body {
   position: absolute;
   border-left-style: solid;
   border-left-width: 30px;
-  border-left-color: #a9ff4e;
+  border-left-color: #2FFDA2;
   top: 87px;
   bottom: 7px;
   right: 8px;
@@ -61,6 +61,17 @@ body {
   padding-left: 25px;
 }
 
+#dot {
+  grid-area: xY;
+  justify-self: left;
+  font-family: "Roboto Mono", monospace;
+  color: #6BD9EE;
+  margin-top: 20px;
+  margin-bottom: -10px;
+  margin-left: -1px;
+  padding-left: 0px;
+}
+
 #lang {
   grid-area: xY;
   justify-self: left;
@@ -68,7 +79,7 @@ body {
   color: #6BD9EE;
   margin-top: 20px;
   margin-bottom: -10px;
-  padding-left: 0px;
+  padding-left: 9px;
 }
 
 /* within store-container */
@@ -86,7 +97,7 @@ body {
   grid-area: aA;
   justify-self: left;
   margin-top: 20px;
-  background-color: #a9ff4e;
+  background-color: #2FFDA2;
   border-bottom-style: none;
   outline: none;
   font-family: "Roboto Mono", monospace;
@@ -101,12 +112,12 @@ body {
   outline: none;
   border-top-style: solid;
   border-top-width: 1px;
-  border-top-color: #a9ff4e;
+  border-top-color: #2FFDA2;
   border-left-style: none;
   border-right-style: none;
   border-bottom-style: none;
   border-bottom-width: 1px;
-  border-bottom-color: #a9ff4e;
+  border-bottom-color: #2FFDA2;
   width: 135px;
   height: 25px;
   font-family: "Roboto Mono", monospace;
@@ -129,7 +140,7 @@ body {
   grid-area: aA;
   justify-self: right;
   margin-top: 20px;
-  background-color: #a9ff4e;
+  background-color: #2FFDA2;
   border-bottom-style: none;
   font-family: "Roboto Mono", monospace;
   color: #757575;
@@ -143,12 +154,12 @@ body {
   outline: none;
   border-top-style: solid;
   border-top-width: 1px;
-  border-top-color: #a9ff4e;
+  border-top-color: #2FFDA2;
   border-left-style: none;
   border-right-style: none;
   border-bottom-style: none;
   border-bottom-width: 1px;
-  border-bottom-color: #a9ff4e;
+  border-bottom-color: #2FFDA2;
   width: 135px;
   height: 25px;
   font-family: "Roboto Mono", monospace;
@@ -160,7 +171,7 @@ body {
   grid-area: aB;
   justify-self: right;
   margin-top: 20px;
-  background-color: #a9ff4e;
+  background-color: #2FFDA2;
   border-bottom-style: none;
   font-family: "Roboto Mono", monospace;
   color: #757575;
@@ -174,12 +185,12 @@ body {
   outline: none;
   border-top-style: solid;
   border-top-width: 1px;
-  border-top-color: #a9ff4e;
+  border-top-color: #2FFDA2;
   border-left-style: none;
   border-right-style: none;
   border-bottom-style: none;
   border-bottom-width: 1px;
-  border-bottom-color: #a9ff4e;
+  border-bottom-color: #2FFDA2;
   width: 135px;
   height: 25px;
   font-family: "Roboto Mono", monospace;
