@@ -6,14 +6,35 @@ $(document).ready(function() {
   editorTheme;
   editorLanguage;
 
+  let historyFlag = 0;
+  let history = [];
+
+  const checkHistory = function () {
+    if (!localStorage.gquivSnippets) {
+      let historyString = JSON.stringify(history);
+      localStorage.setItem(`gquivSnippets`, historyString);
+    } else {
+      let historyArray = localStorage.getItem(`gquivSnippets`);
+      history = JSON.parse(localStorage.getItem(`gquivSnippets`));
+      historyFlag = history.length - 1; 
+    }
+  }();
+
+  console.log(`history: ${history}\ngquivSnippets: ${localStorage.getItem(`gquivSnippets`)}`)
+
   $(`#gquiv`).css( 'cursor', 'pointer' );
   $(`#dot`).css( 'cursor', 'pointer' );
   $(`#lang`).css( 'cursor', 'pointer' );
+  $(`#back-arrow`).css( 'cursor', 'pointer' );
+  $(`#forward-arrow`).css( 'cursor', 'pointer' );
 
   const save = function() {
     let $title = $(`.input-field-title`).val();
     let content = editor.getValue();
     localStorage.setItem($title, content);
+    history.push($title)
+    historyFlag = history.length - 1;
+    localStorage.setItem(`gquivSnippets`, JSON.stringify(history))
   };
   const get = function() {
     let userFile = $(`.input-field-get`).val();
@@ -93,6 +114,26 @@ $(document).ready(function() {
       deleteSnippet();
     }
   };
+  const getHistory = function(e) {
+    if (e.target.className === `back`) {
+      historyFlag--;
+      let backSnip = JSON.stringify(history[historyFlag]);
+      let slicedBackSnip = backSnip.slice(1, -1)
+      let userFileBackSnip = slicedBackSnip;
+      let getThisBackSnip = localStorage.getItem(userFileBackSnip);
+      $(`.input-field-title`).val(`${userFileBackSnip}`);
+      editor.session.setValue(`${getThisBackSnip}`);
+    } 
+    if (e.target.className === `forward`) {
+      historyFlag++;
+      let forwardSnip = JSON.stringify(history[historyFlag]);
+      let slicedForwardSnip = forwardSnip.slice(1, -1)
+      let userFileForwardSnip = slicedForwardSnip;
+      let getThisForwardSnip = localStorage.getItem(userFileForwardSnip);
+      $(`.input-field-title`).val(`${userFileForwardSnip}`);
+      editor.session.setValue(`${getThisForwardSnip}`);
+    }
+  };
   
   $(`.store-btn`).on(`click`, save);
   $(`.get-btn`).on('click', get);
@@ -100,7 +141,10 @@ $(document).ready(function() {
   $(`#gquiv`).on('click', changeSkin);
   $(`#dot`).on('click', changeCodepen());
   $(`#lang`).on('click', changeLang);
+  $(`#forward-arrow`).on('click', getHistory);
+  $(`#back-arrow`).on('click', getHistory);
   $(`.input-field-title`).on('keypress', pressEnter);
   $(`.input-field-get`).on('keypress', pressEnter);
   $(`.input-field-delete`).on('keypress', pressEnter);
+  
 });
