@@ -20,7 +20,7 @@ $(document).ready(function() {
     }
   }();
 
-  console.log(`history: ${history}\ngquivSnippets: ${localStorage.getItem(`gquivSnippets`)}`)
+  //console.log(`history: ${history}\ngquivSnippets: ${localStorage.getItem(`gquivSnippets`)}`)
 
   $(`#gquiv`).css( 'cursor', 'pointer' );
   $(`#dot`).css( 'cursor', 'pointer' );
@@ -152,6 +152,12 @@ $(document).ready(function() {
       editor.session.setValue(`${getThisForwardSnip}`);
     }
   };
+  const runCode = function(e) {
+    let code = editor.getValue();
+    if( e.which === 98 && e.metaKey ) {
+      console.log(Function(code)());
+    }
+  }
   
   $(`.store-btn`).on(`click`, save);
   $(`.get-btn`).on('click', get);
@@ -164,5 +170,6 @@ $(document).ready(function() {
   $(`.input-field-title`).on('keypress', pressEnter);
   $(`.input-field-get`).on('keypress', pressEnter);
   $(`.input-field-delete`).on('keypress', pressEnter);
-  
+  $(`#editor_wrapper`).bind('keypress', runCode);
+
 });
