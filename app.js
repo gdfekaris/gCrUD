@@ -136,24 +136,18 @@ $(document).ready(function() {
       if (historyFlag < 0) {
         historyFlag = 0;
       }
-      let backSnip = JSON.stringify(history[historyFlag]);
-      let slicedBackSnip = backSnip.slice(1, -1)
-      let userFileBackSnip = slicedBackSnip;
-      let getThisBackSnip = localStorage.getItem(userFileBackSnip);
-      $(`.input-field-title`).val(`${userFileBackSnip}`);
-      editor.session.setValue(`${getThisBackSnip}`);
+      let backSnip = history[historyFlag];
+      $(`.input-field-title`).val(`${backSnip}`);
+      editor.session.setValue(`${localStorage.getItem(backSnip)}`);
     } 
     if (e.target.className === `forward`) {
       historyFlag++;
       if (historyFlag > (history.length - 1)) {
         historyFlag = history.length - 1;
       }
-      let forwardSnip = JSON.stringify(history[historyFlag]);
-      let slicedForwardSnip = forwardSnip.slice(1, -1)
-      let userFileForwardSnip = slicedForwardSnip;
-      let getThisForwardSnip = localStorage.getItem(userFileForwardSnip);
-      $(`.input-field-title`).val(`${userFileForwardSnip}`);
-      editor.session.setValue(`${getThisForwardSnip}`);
+      let forwardSnip = history[historyFlag];
+      $(`.input-field-title`).val(`${forwardSnip}`);
+      editor.session.setValue(`${localStorage.getItem(forwardSnip)}`);
     }
   };
   const runCode = function(e) {
