@@ -54,6 +54,9 @@ $(document).ready(function() {
   };
   const deleteSnippet = function() {
     let deleteValue = $(`.input-field-delete`).val();
+    if ($(`.input-field-delete`).val() === `gquivSnippets`) {
+      localStorage.clear();
+    }
     localStorage.removeItem(deleteValue);
     $(`.input-field-delete`).val(``);
     innerDelete(deleteValue); 
@@ -152,7 +155,7 @@ $(document).ready(function() {
   };
   const logGquivSnippets = function(e) {
     if( e.which === 63) {
-      console.log(`your gquiv snippets:\n${localStorage.gquivSnippets}`);
+      console.log(`gquiv snippet keys:\n${localStorage.gquivSnippets}`);
     }
   };
   
