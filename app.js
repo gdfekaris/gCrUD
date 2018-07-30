@@ -20,7 +20,7 @@ $(document).ready(function() {
     }
   }();
 
-  console.log(`your gquiv snippets:\n${localStorage.gquivSnippets}`);
+  //console.log(`your gquiv snippets:\n${localStorage.gquivSnippets}`);
 
   $(`#gquiv`).css( 'cursor', 'pointer' );
   $(`#dot`).css( 'cursor', 'pointer' );
@@ -155,7 +155,12 @@ $(document).ready(function() {
     if( e.which === 98 && e.metaKey ) {
       console.log(Function(code)());
     }
-  }
+  };
+  const logGquivSnippets = function(e) {
+    if( e.which === 63) {
+      console.log(`your gquiv snippets:\n${localStorage.gquivSnippets}`);
+    }
+  };
   
   $(`.store-btn`).on(`click`, save);
   $(`.get-btn`).on('click', get);
@@ -169,5 +174,6 @@ $(document).ready(function() {
   $(`.input-field-get`).on('keypress', pressEnter);
   $(`.input-field-delete`).on('keypress', pressEnter);
   $(`#editor_wrapper`).bind('keypress', runCode);
+  $(document).bind('keypress', logGquivSnippets);
 
 });
