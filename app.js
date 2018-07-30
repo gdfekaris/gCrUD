@@ -96,12 +96,18 @@ $(document).ready(function() {
   };
   const changeLang = function() { 
     let lang = $(`#lang`).text();
-    if (editor.getValue() === `//your code here`) {
-        editor.setValue(`<!DOCTYPE html>\n<!-- your code here -->`);
-    } else if (editor.getValue() === `<!DOCTYPE html>\n<!-- your code here -->`) {
-        editor.setValue(`/*your code here*/`);
-    } else if (editor.getValue() === `/*your code here*/`) {
-        editor.setValue(`//your code here`);
+    let val = editor.getValue();
+    let ph = [
+      `//your code here`, 
+      `<!DOCTYPE html>\n<!-- your code here -->`,
+      `/*your code here*/`
+    ];
+    if ((val === ph[0] || ph[2]) && (lang === `js`)) {
+        editor.setValue(ph[1]);
+    } else if ((val === ph[0] || ph[1]) && (lang === `html`)) {
+        editor.setValue(ph[2]);
+    } else if ((val === ph[1] || ph[2]) && (lang === `css`)) {
+        editor.setValue(ph[0]);
     }
     if (lang === `js`) {
       $(`#lang`).text(`html`);
