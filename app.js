@@ -3,17 +3,6 @@ $(document).ready(function() {
   let historyFlag = 0;
   let history = [];
 
-  const checkHistory = function () {
-    if (!localStorage.gquivSnippets) {
-      let historyString = JSON.stringify(history);
-      localStorage.setItem(`gquivSnippets`, historyString);
-    } else {
-      let historyArray = localStorage.getItem(`gquivSnippets`);
-      history = JSON.parse(localStorage.getItem(`gquivSnippets`));
-      historyFlag = history.length; 
-    }
-  }();
-
   $(`#gquiv`).css( 'cursor', 'pointer' );
   $(`#dot`).css( 'cursor', 'pointer' );
   $(`#lang`).css( 'cursor', 'pointer' );
@@ -38,6 +27,19 @@ $(document).ready(function() {
     historyFlag = history.length - 1;
     localStorage.setItem(`gquivSnippets`, JSON.stringify(history))
   };
+  const checkHistory = function () {
+    if (!localStorage.gquivSnippets) {
+      let historyString = JSON.stringify(history);
+      localStorage.setItem(`gquivSnippets`, historyString);
+      $(`.input-field-title`).val('gquiv-manual');
+      editor.setValue(`${manual}`);
+      save();
+    } else {
+      let historyArray = localStorage.getItem(`gquivSnippets`);
+      history = JSON.parse(localStorage.getItem(`gquivSnippets`));
+      historyFlag = history.length; 
+    }
+  }();
   const get = function() {
     let userFile = $(`.input-field-get`).val();
     let getThis = localStorage.getItem(userFile);
