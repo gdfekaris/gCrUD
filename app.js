@@ -1,10 +1,4 @@
 $(document).ready(function() {
-  const editor = ace.edit("editor");
-  let editorTheme = editor.setTheme("ace/theme/monokai");
-  let editorLanguage = editor.session.setMode("ace/mode/javascript");
-  editor.setValue(`//your code here`);
-  editorTheme;
-  editorLanguage;
 
   let historyFlag = 0;
   let history = [];
@@ -19,8 +13,6 @@ $(document).ready(function() {
       historyFlag = history.length; 
     }
   }();
-
-  //console.log(`your gquiv snippets:\n${localStorage.gquivSnippets}`);
 
   $(`#gquiv`).css( 'cursor', 'pointer' );
   $(`#dot`).css( 'cursor', 'pointer' );

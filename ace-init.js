@@ -1,3 +1,6 @@
-// const editor = ace.edit("editor");
-// editor.setTheme("ace/theme/monokai");
-// editor.session.setMode("ace/mode/javascript");
+const editor = ace.edit("editor");
+let editorTheme = editor.setTheme("ace/theme/monokai");
+let editorLanguage = editor.session.setMode("ace/mode/javascript");
+editor.setValue(`//your code here`);
+editorTheme;
+editorLanguage;
