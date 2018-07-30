@@ -20,7 +20,7 @@ $(document).ready(function() {
     }
   }();
 
-  //console.log(`history: ${history}\ngquivSnippets: ${localStorage.getItem(`gquivSnippets`)}`)
+  console.log(`your gquiv snippets:\n${localStorage.gquivSnippets}`);
 
   $(`#gquiv`).css( 'cursor', 'pointer' );
   $(`#dot`).css( 'cursor', 'pointer' );
@@ -28,9 +28,19 @@ $(document).ready(function() {
   $(`#back-arrow`).css( 'cursor', 'pointer' );
   $(`#forward-arrow`).css( 'cursor', 'pointer' );
 
+  const innerDelete = function(value) {
+    history.forEach(function(e, i) {
+      if (value === e) {
+        history.splice(i, 1);
+        let historyString = JSON.stringify(history);
+        localStorage.setItem(`gquivSnippets`, historyString);
+      }
+    })  
+  };
   const save = function() {
     let $title = $(`.input-field-title`).val();
     let content = editor.getValue();
+    innerDelete($title);
     localStorage.setItem($title, content);
     history.push($title)
     historyFlag = history.length - 1;
@@ -52,26 +62,20 @@ $(document).ready(function() {
     let deleteValue = $(`.input-field-delete`).val();
     localStorage.removeItem(deleteValue);
     $(`.input-field-delete`).val(``);
-    history.forEach(function(e, i) {
-      if (deleteValue === e) {
-        history.splice(i, 1);
-        let historyString = JSON.stringify(history);
-        localStorage.setItem(`gquivSnippets`, historyString);
-      }
-    })
+    innerDelete(deleteValue); 
   };
   const changeSkin = function() {
     let $theme = $(`#theme`).attr(`href`);
     if ($theme === `lavenderStyles.css`) {
+      $(`#theme`).attr(`href`, `titaniumStyles.css`)
+    }
+    if ($theme === `titaniumStyles.css`) {
       $(`#theme`).attr(`href`, `marineStyles.css`)
     }
     if ($theme === `marineStyles.css`) {
       $(`#theme`).attr(`href`, `cobaltStyles.css`)
     }
     if ($theme === `cobaltStyles.css`) {
-      $(`#theme`).attr(`href`, `titaniumStyles.css`)
-    }
-    if ($theme === `titaniumStyles.css`) {
       $(`#theme`).attr(`href`, `lavenderStyles.css`)
     }
   };
