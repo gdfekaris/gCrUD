@@ -102,24 +102,39 @@ $(document).ready(function() {
       `<!DOCTYPE html>\n<!-- your code here -->`,
       `/*your code here*/`
     ];
-    if ((val === ph[0] || ph[2]) && (lang === `js`)) {
+    const valBasedChange = function () {
+      if ((val === ph[0] || ph[2]) && (lang === `js`)) {
+        $(`#lang`).text(`html`);
         editor.setValue(ph[1]);
-    } else if ((val === ph[0] || ph[1]) && (lang === `html`)) {
+        editorLanguage = editor.session.setMode("ace/mode/html");
+      } else if ((val === ph[0] || ph[1]) && (lang === `html`)) {
+        $(`#lang`).text(`css`);
         editor.setValue(ph[2]);
-    } else if ((val === ph[1] || ph[2]) && (lang === `css`)) {
+        editorLanguage = editor.session.setMode("ace/mode/css");
+      } else if ((val === ph[1] || ph[2]) && (lang === `css`)) {
+        $(`#lang`).text(`js`);
         editor.setValue(ph[0]);
-    }
-    if (lang === `js`) {
-      $(`#lang`).text(`html`);
-      editorLanguage = editor.session.setMode("ace/mode/html");
-    }
-    if (lang === `html`) {
-      $(`#lang`).text(`css`);
-      editorLanguage = editor.session.setMode("ace/mode/css");
-    }
-    if (lang === `css`) {
-      $(`#lang`).text(`js`);
-      editor.session.setMode("ace/mode/javascript");
+        editor.session.setMode("ace/mode/javascript");
+      }
+    };
+    const extBasedChange = function() {
+      if (lang === `js`) {
+        $(`#lang`).text(`html`);
+        editorLanguage = editor.session.setMode("ace/mode/html");
+      }
+      if (lang === `html`) {
+        $(`#lang`).text(`css`);
+        editorLanguage = editor.session.setMode("ace/mode/css");
+      }
+      if (lang === `css`) {
+        $(`#lang`).text(`js`);
+        editor.session.setMode("ace/mode/javascript");
+      }
+    };
+    if (ph.includes(val)) {
+      valBasedChange();
+    } else {
+      extBasedChange();
     }
   };
   const pressEnter = function (e) {
