@@ -1,15 +1,15 @@
 /* Containers */
 
 body {
-  background-color: #1B2554; 
+  background-color: #E6E7E9; 
   border-top-style: solid;
   border-top-width: 1px;
-  border-top-color: #2FFDA2;
+  border-top-color: #DD4354;
   border-left-style: none;
   border-right-style: none;
   border-bottom-style: solid;
   border-bottom-width: 1px;
-  border-bottom-color: #2FFDA2;
+  border-bottom-color: #DD4354;
   margin-top: 20px;
 }
 #main-container {
@@ -53,6 +53,18 @@ body {
     "bA bB"
 }
 
+/*#arrow-container {
+  grid-area: aA;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "hH hI";
+  justify-self: left;
+  margin-top: -7px;
+  margin-bottom: -30px;
+  margin-left: 50px;
+}*/
+
 
 /* Text decorator */
 
@@ -68,7 +80,7 @@ body {
   position: absolute;
   border-left-style: solid;
   border-left-width: 30px;
-  border-left-color: #2FFDA2;
+  border-left-color: #DD4354;
   top: 100px;
   bottom: 7px;
   right: 8px;
@@ -78,61 +90,61 @@ body {
   grid-area: bA;
   justify-self: left;
   margin-top: 0px;
-  background-color: #1B2554;
+  background-color: #E6E7E9;
   outline: none;
   border-top-style: solid;
   border-top-width: 1px;
-  border-top-color: #2FFDA2;
+  border-top-color: #DD4354;
   border-left-style: none;
   border-right-style: none;
   border-bottom-style: none;
   border-bottom-width: 1px;
-  border-bottom-color: #2FFDA2;
+  border-bottom-color: #DD4354;
   width: 135px;
   height: 25px;
   font-family: "Roboto Mono", monospace;
-  caret-color: #2FFDA2;
-  color: #2FFDA2;
+  caret-color: #DD4354;
+  color: #DD4354;
 }
 .input-field-get {
   grid-area: bA;
   justify-self: right;
   margin-top: 0px; 
-  background-color: #1B2554;
+  background-color: #E6E7E9;
   outline: none;
   border-top-style: solid;
   border-top-width: 1px;
-  border-top-color: #2FFDA2;
+  border-top-color: #DD4354;
   border-left-style: none;
   border-right-style: none;
   border-bottom-style: none;
   border-bottom-width: 1px;
-  border-bottom-color: #2FFDA2;
+  border-bottom-color: #DD4354;
   width: 135px;
   height: 25px;
   font-family: "Roboto Mono", monospace;
-  caret-color: #2FFDA2;
-  color: #2FFDA2;
+  caret-color: #DD4354;
+  color: #DD4354;
 }
 .input-field-delete {
   grid-area: bB;
   justify-self: right;
   margin-top: 0px;
-  background-color: #1B2554;
+  background-color: #E6E7E9;
   outline: none;
   border-top-style: solid;
   border-top-width: 1px;
-  border-top-color: #2FFDA2;
+  border-top-color: #DD4354;
   border-left-style: none;
   border-right-style: none;
   border-bottom-style: none;
   border-bottom-width: 1px;
-  border-bottom-color: #2FFDA2;
+  border-bottom-color: #DD4354;
   width: 135px;
   height: 25px;
   font-family: "Roboto Mono", monospace;
-  caret-color: #2FFDA2;
-  color: #2FFDA2;
+  caret-color: #DD4354;
+  color: #DD4354;
 }
 
 
@@ -143,7 +155,7 @@ body {
   grid-area: aA;
   justify-self: left;
   margin-top: 20px;
-  background-color: #2FFDA2;
+  background-color: #DD4354;
   border-top-style: none;
   border-bottom-style: none;
   border-left-style: none;
@@ -181,7 +193,7 @@ body {
   grid-area: aA;
   justify-self: right;
   margin-top: 20px;
-  background-color: #2FFDA2;
+  background-color: #DD4354;
   border-top-style: none;
   border-bottom-style: none;
   border-left-style: none;
@@ -219,7 +231,7 @@ body {
   grid-area: aB;
   justify-self: right;
   margin-top: 20px;
-  background-color: #2FFDA2;
+  background-color: #DD4354;
   border-top-style: none;
   border-bottom-style: none;
   border-left-style: none;
@@ -258,7 +270,7 @@ body {
   grid-area: xX;
   justify-self: right;
   font-family: "Roboto Mono", monospace;
-  color: #2FF1FD;
+  color: #60676D;
   margin-top: 20px;
   margin-bottom: -10px;
   padding-left: 25px;
@@ -268,7 +280,7 @@ body {
   grid-area: xY;
   justify-self: left;
   font-family: "Roboto Mono", monospace;
-  color: #2FF1FD;
+  color: #60676D;
   margin-top: 20px;
   margin-bottom: -10px;
   margin-left: -1px;
@@ -279,7 +291,7 @@ body {
   grid-area: xY;
   justify-self: left;
   font-family: "Roboto Mono", monospace;
-  color: #2FF1FD;
+  color: #60676D;
   margin-top: 20px;
   margin-bottom: -10px;
   padding-left: 9px;
@@ -294,7 +306,7 @@ body {
   /*margin-left: 50px;*/
   font-family: "Roboto Mono", monospace;
   font-size: large;
-  color: #2FF1FD;
+  color: #60676D;
 }
 
 #forward-arrow {
@@ -305,5 +317,5 @@ body {
   margin-right: 104px;
   font-family: "Roboto Mono", monospace;
   font-size: large;
-  color: #2FF1FD;
+  color: #60676D;
 }

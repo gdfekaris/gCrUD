@@ -78,7 +78,7 @@ body {
   grid-area: bA;
   justify-self: left;
   margin-top: 0px;
-  background-color: #2F312A;
+  background-color: #59555B;
   outline: none;
   border-top-style: solid;
   border-top-width: 1px;
@@ -91,14 +91,14 @@ body {
   width: 135px;
   height: 25px;
   font-family: "Roboto Mono", monospace;
-  caret-color: orange;
-  color: orange;
+  caret-color: #45BDC1;
+  color: #45BDC1;
 }
 .input-field-get {
   grid-area: bA;
   justify-self: right;
   margin-top: 0px; 
-  background-color: #2F312A;
+  background-color: #59555B;
   outline: none;
   border-top-style: solid;
   border-top-width: 1px;
@@ -111,14 +111,14 @@ body {
   width: 135px;
   height: 25px;
   font-family: "Roboto Mono", monospace;
-  caret-color: orange;
-  color: orange;
+  caret-color: #45BDC1;
+  color: #45BDC1;
 }
 .input-field-delete {
   grid-area: bB;
   justify-self: right;
   margin-top: 0px;
-  background-color: #2F312A;
+  background-color: #59555B;
   outline: none;
   border-top-style: solid;
   border-top-width: 1px;
@@ -131,8 +131,8 @@ body {
   width: 135px;
   height: 25px;
   font-family: "Roboto Mono", monospace;
-  caret-color: orange;
-  color: orange;
+  caret-color: #45BDC1;
+  color: #45BDC1;
 }
 
 

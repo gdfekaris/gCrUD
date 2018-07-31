@@ -73,6 +73,12 @@ $(document).ready(function() {
       $(`#theme`).attr(`href`, `cobaltStyles.css`)
     }
     if ($theme === `cobaltStyles.css`) {
+      $(`#theme`).attr(`href`, `ulysses3XStyles.css`)
+    }
+    if ($theme === `ulysses3XStyles.css`) {
+      $(`#theme`).attr(`href`, `redGraphiteStyles.css`)
+    }
+    if ($theme === `redGraphiteStyles.css`) {
       $(`#theme`).attr(`href`, `lavenderStyles.css`)
     }
   };
@@ -80,16 +86,28 @@ $(document).ready(function() {
     let flag = 0;
     return function() {
       if(flag === 0) {
-        editorTheme = editor.setTheme("ace/theme/chrome");
+        editorTheme = editor.setTheme("ace/theme/monokai");
         flag++;
       } else if(flag === 1) {
-        editorTheme = editor.setTheme("ace/theme/terminal"); 
+        editorTheme = editor.setTheme("ace/theme/chrome"); 
         flag++;
       } else if(flag === 2) {
-        editorTheme = editor.setTheme("ace/theme/twilight");
+        editorTheme = editor.setTheme("ace/theme/twilight")
         flag++;
       } else if(flag === 3) {
-        editorTheme = editor.setTheme("ace/theme/monokai");
+        editorTheme = editor.setTheme("ace/theme/tomorrow_night_blue");
+        flag++;
+      } else if(flag === 4) {
+        editorTheme = editor.setTheme("ace/theme/terminal");
+        flag++;
+      } else if(flag === 5) {
+        editorTheme = editor.setTheme("ace/theme/mono_industrial");
+        flag++;
+      } else if(flag === 6) {
+        editorTheme = editor.setTheme("ace/theme/kuroir");
+        flag++;
+      } else if(flag === 7) {
+        editorTheme = editor.setTheme("ace/theme/dracula");
         flag = 0;
       }
     };

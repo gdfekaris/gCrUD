@@ -4,12 +4,12 @@ body {
   background-color: #0945A4; 
   border-top-style: solid;
   border-top-width: 1px;
-  border-top-color: #E6DA76;
+  border-top-color: orange;
   border-left-style: none;
   border-right-style: none;
   border-bottom-style: solid;
   border-bottom-width: 1px;
-  border-bottom-color: #E6DA76;
+  border-bottom-color: orange;
   margin-top: 20px;
 }
 #main-container {
@@ -68,7 +68,7 @@ body {
   position: absolute;
   border-left-style: solid;
   border-left-width: 30px;
-  border-left-color: #E6DA76;
+  border-left-color: orange;
   top: 100px;
   bottom: 7px;
   right: 8px;
@@ -78,16 +78,16 @@ body {
   grid-area: bA;
   justify-self: left;
   margin-top: 0px;
-  background-color: #2F312A;
+  background-color: #0945A4;
   outline: none;
   border-top-style: solid;
   border-top-width: 1px;
-  border-top-color: #E6DA76;
+  border-top-color: orange;
   border-left-style: none;
   border-right-style: none;
   border-bottom-style: none;
   border-bottom-width: 1px;
-  border-bottom-color: #E6DA76;
+  border-bottom-color: orange;
   width: 135px;
   height: 25px;
   font-family: "Roboto Mono", monospace;
@@ -98,16 +98,16 @@ body {
   grid-area: bA;
   justify-self: right;
   margin-top: 0px; 
-  background-color: #2F312A;
+  background-color: #0945A4;
   outline: none;
   border-top-style: solid;
   border-top-width: 1px;
-  border-top-color: #E6DA76;
+  border-top-color: orange;
   border-left-style: none;
   border-right-style: none;
   border-bottom-style: none;
   border-bottom-width: 1px;
-  border-bottom-color: #E6DA76;
+  border-bottom-color: orange;
   width: 135px;
   height: 25px;
   font-family: "Roboto Mono", monospace;
@@ -118,16 +118,16 @@ body {
   grid-area: bB;
   justify-self: right;
   margin-top: 0px;
-  background-color: #2F312A;
+  background-color: #0945A4;
   outline: none;
   border-top-style: solid;
   border-top-width: 1px;
-  border-top-color: #E6DA76;
+  border-top-color: orange;
   border-left-style: none;
   border-right-style: none;
   border-bottom-style: none;
   border-bottom-width: 1px;
-  border-bottom-color: #E6DA76;
+  border-bottom-color: orange;
   width: 135px;
   height: 25px;
   font-family: "Roboto Mono", monospace;
@@ -143,7 +143,7 @@ body {
   grid-area: aA;
   justify-self: left;
   margin-top: 20px;
-  background-color: #E6DA76;
+  background-color: orange;
   border-top-style: none;
   border-bottom-style: none;
   border-left-style: none;
@@ -181,7 +181,7 @@ body {
   grid-area: aA;
   justify-self: right;
   margin-top: 20px;
-  background-color: #E6DA76;
+  background-color: orange;
   border-top-style: none;
   border-bottom-style: none;
   border-left-style: none;
@@ -219,7 +219,7 @@ body {
   grid-area: aB;
   justify-self: right;
   margin-top: 20px;
-  background-color: #E6DA76;
+  background-color: orange;
   border-top-style: none;
   border-bottom-style: none;
   border-left-style: none;
@@ -258,7 +258,7 @@ body {
   grid-area: xX;
   justify-self: right;
   font-family: "Roboto Mono", monospace;
-  color: #6BD9EE;
+  color: #0992A4;
   margin-top: 20px;
   margin-bottom: -10px;
   padding-left: 25px;
@@ -268,7 +268,7 @@ body {
   grid-area: xY;
   justify-self: left;
   font-family: "Roboto Mono", monospace;
-  color: #6BD9EE;
+  color: #0992A4;
   margin-top: 20px;
   margin-bottom: -10px;
   margin-left: -1px;
@@ -279,7 +279,7 @@ body {
   grid-area: xY;
   justify-self: left;
   font-family: "Roboto Mono", monospace;
-  color: #6BD9EE;
+  color: #0992A4;
   margin-top: 20px;
   margin-bottom: -10px;
   padding-left: 9px;
@@ -294,7 +294,7 @@ body {
   /*margin-left: 50px;*/
   font-family: "Roboto Mono", monospace;
   font-size: large;
-  color: #6BD9EE;
+  color: #0992A4;
 }
 
 #forward-arrow {
@@ -305,5 +305,5 @@ body {
   margin-right: 104px;
   font-family: "Roboto Mono", monospace;
   font-size: large;
-  color: #6BD9EE;
+  color: #0992A4;
 }
