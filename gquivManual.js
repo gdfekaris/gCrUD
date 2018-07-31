@@ -1,6 +1,6 @@
 let manual = `/*\ngquiv manual\n
 save button - saves snippet to localStorage (saving a new snippet with a previously used key will overwrite)\n
-get button - retrieves snippet by key\n
+get button - retrieves snippet by key (if no key is entered, starts brand new snippet)\n
 « » - cycles through saved snippets\n
 delete - deletes snippet by key\n
 gquiv - cycles through skins\n
