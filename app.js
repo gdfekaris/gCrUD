@@ -89,10 +89,10 @@ $(document).ready(function() {
     let lang = localStorage.getItem(`${userFile}La`);
     $(`.input-field-title`).val(`${userFile}`);
     if ((localStorage[userFile] === undefined) || (userFile === `//get key`) || (userFile === ``)) {
-      $(`#theme`).attr(`href`, `lavenderStyles.css`);
+      $(`#theme`).attr(`href`, settings.skins[0]);
       $(`#lang`).text(`js`);
-      editor.setTheme(`ace/theme/dracula`);
-      editor.session.setMode("ace/mode/javascript");
+      editor.setTheme(settings.themes[0]);
+      editor.session.setMode(settings.languages[0]);
       editor.session.setValue(`null`);
       if ((userFile === `//get key`) || (userFile === ``)) {
         editor.setValue(`//your code here`);
@@ -102,7 +102,7 @@ $(document).ready(function() {
       let code = localStorage.getItem(userFile);
       editor.session.setValue(`${code}`);
       if (lang === `js`) {
-        editor.session.setMode(`ace/mode/javascript`)
+        editor.session.setMode(settings.languages[0])
       } else {
         editor.session.setMode(`ace/mode/${lang}`)
       }
