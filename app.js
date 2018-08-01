@@ -134,6 +134,10 @@ $(document).ready(function() {
     let flag = 0;
     let limit = settings.skins.length - 1;
     return function() {
+      let currentSkin = $(`#theme`).attr(`href`)
+      settings.skins.forEach(function(e, i) {
+        if (e === currentSkin) { flag = i }
+      })
       flag++;
       if ((flag < 0 ) || ( flag > limit)) { flag = 0 }
       $(`#theme`).attr(`href`, `${settings.skins[flag]}`)
@@ -143,13 +147,16 @@ $(document).ready(function() {
     let flag = 0;
     let limit = settings.themes.length - 1;
     return function() {
+      let currentTheme = editor.getTheme();
+      settings.themes.forEach(function(e, i) {
+        if (e === currentTheme) { flag = i }
+      })
       flag++;
       if ((flag < 0 ) || ( flag > limit)) { flag = 0 }
       editor.setTheme(`${settings.themes[flag]}`);
     };
   };
   const changeLang = function() { 
-    let lang = $(`#lang`).text();
     let flagL = 0;
     let flagE = 0;
     let flagP = 0;
@@ -158,12 +165,20 @@ $(document).ready(function() {
     let limitP = settings.placeholders.length - 1;
     return function() {
       let val = editor.getValue();
+      let currentLang = $(`#lang`).text();
+      settings.extensions.forEach(function(e, i) {
+        if (e === currentLang) { 
+          flagL = i;
+          flagE = i;
+          flagP = i;
+        }
+      })
       flagL++;
       flagE++;
       flagP++;
-      if ((flagL < 0 ) || ( flagL > limitL)) { flagL = 0 }
-      if ((flagE < 0 ) || ( flagE > limitE)) { flagE = 0 }
-      if ((flagP < 0 ) || ( flagP > limitP)) { flagP = 0 }
+      if ( (flagL < 0 ) || (flagL > limitL) ) { flagL = 0 }
+      if ( (flagE < 0 ) || (flagE > limitE) ) { flagE = 0 }
+      if ( (flagP < 0 ) || (flagP > limitP) ) { flagP = 0 }
       if (settings.placeholders.includes(val)) {
         editor.session.setMode(settings.languages[flagL]);
         $(`#lang`).text(settings.extensions[flagE]);
@@ -187,7 +202,7 @@ $(document).ready(function() {
   };
   const backArrow = function () {
     historyFlag--;
-    if (historyFlag < 0) {historyFlag = 0;}
+    if (historyFlag < 0) { historyFlag = 0; }
     let backSnip = history[historyFlag];
     let skin = localStorage.getItem(`${backSnip}Sk`);
     let theme = localStorage.getItem(`${backSnip}Th`);
