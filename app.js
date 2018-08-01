@@ -245,12 +245,12 @@ $(document).ready(function() {
   };
   const runCode = function(e) {
     let code = editor.getValue();
-    if( e.which === 98 && e.metaKey ) {
+    if(e.metaKey && e.which === 98) {
       console.log(Function(code)());
     }
   };
   const logGquivSnippets = function(e) {
-    if( e.which === 63) {
+    if(e.metaKey && e.keyCode === 221) {
       console.log(`gquiv snippet keys:\n${localStorage.gquivSnippets}`);
     }
   };
@@ -267,6 +267,5 @@ $(document).ready(function() {
   $(`.input-field-get`).on('keypress', pressEnter);
   $(`.input-field-delete`).on('keypress', pressEnter);
   $(`#editor_wrapper`).bind('keypress', runCode);
-  $(document).bind('keypress', logGquivSnippets);
-
+  $(document).bind('keydown', logGquivSnippets);
 });
