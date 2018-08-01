@@ -1,7 +1,6 @@
 $(document).ready(function() {
   let historyFlag = 0;
   let history = [];
-  /*
   let settings = {
     skins: [
       `lavenderStyles.css`,
@@ -25,10 +24,19 @@ $(document).ready(function() {
       `ace/mode/javascript`,
       `ace/mode/html`,
       `ace/mode/css`
+    ],
+    extensions: [
+      `js`,
+      `html`,
+      `css`
+    ],
+    placeholders: [
+      `//your code here`, 
+      `<!DOCTYPE html>\n<!-- your code here -->`,
+      `/*your code here*/`
     ]
   };
-  */
-
+  
   $(`#gquiv`).css( 'cursor', 'pointer' );
   $(`#dot`).css( 'cursor', 'pointer' );
   $(`#lang`).css( 'cursor', 'pointer' );
@@ -123,97 +131,47 @@ $(document).ready(function() {
     innerDelete(deleteValue); 
   };
   const changeSkin = function() {
-    let $theme = $(`#theme`).attr(`href`);
-    if ($theme === `lavenderStyles.css`) {
-      $(`#theme`).attr(`href`, `titaniumStyles.css`)
-    }
-    if ($theme === `titaniumStyles.css`) {
-      $(`#theme`).attr(`href`, `marineStyles.css`)
-    }
-    if ($theme === `marineStyles.css`) {
-      $(`#theme`).attr(`href`, `cobaltStyles.css`)
-    }
-    if ($theme === `cobaltStyles.css`) {
-      $(`#theme`).attr(`href`, `ulysses3XStyles.css`)
-    }
-    if ($theme === `ulysses3XStyles.css`) {
-      $(`#theme`).attr(`href`, `redGraphiteStyles.css`)
-    }
-    if ($theme === `redGraphiteStyles.css`) {
-      $(`#theme`).attr(`href`, `lavenderStyles.css`)
-    }
+    let flag = 0;
+    let limit = settings.skins.length - 1;
+    return function() {
+      flag++;
+      if ((flag < 0 ) || ( flag > limit)) { flag = 0 }
+      $(`#theme`).attr(`href`, `${settings.skins[flag]}`)
+    };
   };
   const changeCodepen = function() {
     let flag = 0;
+    let limit = settings.themes.length - 1;
     return function() {
-      if(flag === 0) {
-        editorTheme = editor.setTheme("ace/theme/monokai");
-        flag++;
-      } else if(flag === 1) {
-        editorTheme = editor.setTheme("ace/theme/chrome"); 
-        flag++;
-      } else if(flag === 2) {
-        editorTheme = editor.setTheme("ace/theme/twilight")
-        flag++;
-      } else if(flag === 3) {
-        editorTheme = editor.setTheme("ace/theme/tomorrow_night_blue");
-        flag++;
-      } else if(flag === 4) {
-        editorTheme = editor.setTheme("ace/theme/terminal");
-        flag++;
-      } else if(flag === 5) {
-        editorTheme = editor.setTheme("ace/theme/mono_industrial");
-        flag++;
-      } else if(flag === 6) {
-        editorTheme = editor.setTheme("ace/theme/kuroir");
-        flag++;
-      } else if(flag === 7) {
-        editorTheme = editor.setTheme("ace/theme/dracula");
-        flag = 0;
-      }
+      flag++;
+      if ((flag < 0 ) || ( flag > limit)) { flag = 0 }
+      editor.setTheme(`${settings.themes[flag]}`);
     };
   };
   const changeLang = function() { 
     let lang = $(`#lang`).text();
-    let val = editor.getValue();
-    let ph = [
-      `//your code here`, 
-      `<!DOCTYPE html>\n<!-- your code here -->`,
-      `/*your code here*/`
-    ];
-    const valBasedChange = function () {
-      if ((val === ph[0] || ph[2]) && (lang === `js`)) {
-        $(`#lang`).text(`html`);
-        editor.setValue(ph[1]);
-        editorLanguage = editor.session.setMode("ace/mode/html");
-      } else if ((val === ph[0] || ph[1]) && (lang === `html`)) {
-        $(`#lang`).text(`css`);
-        editor.setValue(ph[2]);
-        editorLanguage = editor.session.setMode("ace/mode/css");
-      } else if ((val === ph[1] || ph[2]) && (lang === `css`)) {
-        $(`#lang`).text(`js`);
-        editor.setValue(ph[0]);
-        editor.session.setMode("ace/mode/javascript");
+    let flagL = 0;
+    let flagE = 0;
+    let flagP = 0;
+    let limitL = settings.languages.length - 1;
+    let limitE = settings.extensions.length - 1;
+    let limitP = settings.placeholders.length - 1;
+    return function() {
+      let val = editor.getValue();
+      flagL++;
+      flagE++;
+      flagP++;
+      if ((flagL < 0 ) || ( flagL > limitL)) { flagL = 0 }
+      if ((flagE < 0 ) || ( flagE > limitE)) { flagE = 0 }
+      if ((flagP < 0 ) || ( flagP > limitP)) { flagP = 0 }
+      if (settings.placeholders.includes(val)) {
+        editor.session.setMode(settings.languages[flagL]);
+        $(`#lang`).text(settings.extensions[flagE]);
+        editor.setValue(settings.placeholders[flagP]);
+      } else {
+        editor.session.setMode(settings.languages[flagL]);
+        $(`#lang`).text(settings.extensions[flagE]);
       }
-    };
-    const extBasedChange = function() {
-      if (lang === `js`) {
-        $(`#lang`).text(`html`);
-        editorLanguage = editor.session.setMode("ace/mode/html");
-      }
-      if (lang === `html`) {
-        $(`#lang`).text(`css`);
-        editorLanguage = editor.session.setMode("ace/mode/css");
-      }
-      if (lang === `css`) {
-        $(`#lang`).text(`js`);
-        editor.session.setMode("ace/mode/javascript");
-      }
-    };
-    if (ph.includes(val)) {
-      valBasedChange();
-    } else {
-      extBasedChange();
     }
   };
   const pressEnter = function (e) {
@@ -227,46 +185,50 @@ $(document).ready(function() {
       deleteSnippet();
     }
   };
+  const backArrow = function () {
+    historyFlag--;
+    if (historyFlag < 0) {historyFlag = 0;}
+    let backSnip = history[historyFlag];
+    let skin = localStorage.getItem(`${backSnip}Sk`);
+    let theme = localStorage.getItem(`${backSnip}Th`);
+    let lang = localStorage.getItem(`${backSnip}La`);
+    $(`.input-field-title`).val(`${backSnip}`);
+    editor.session.setValue(`${localStorage.getItem(backSnip)}`);
+    $(`#lang`).text(lang);
+    $(`#theme`).attr(`href`, skin);
+    editor.setTheme(theme);
+    if (lang === `js`) {
+      editor.session.setMode(settings.languages[0]);
+    } else {
+      editor.session.setMode(`ace/mode/${lang}`);
+    }
+  };
+  const forwardArrow = function() {
+    historyFlag++;
+    if (historyFlag > (history.length - 1)) {
+      historyFlag = history.length - 1;
+    }
+    let forwardSnip = history[historyFlag];
+    let skin = localStorage.getItem(`${forwardSnip}Sk`);
+    let theme = localStorage.getItem(`${forwardSnip}Th`);
+    let lang = localStorage.getItem(`${forwardSnip}La`);
+    $(`.input-field-title`).val(`${forwardSnip}`);
+    editor.session.setValue(`${localStorage.getItem(forwardSnip)}`);
+    $(`#lang`).text(lang);
+    $(`#theme`).attr(`href`, skin);
+    editor.setTheme(theme);
+    if (lang === `js`) {
+      editor.session.setMode(settings.languages[0]);
+    } else {
+      editor.session.setMode(`ace/mode/${lang}`);
+    }
+  };
   const getHistory = function(e) {
     if (e.target.className === `back`) {
-      historyFlag--;
-      if (historyFlag < 0) {
-        historyFlag = 0;
-      }
-      let backSnip = history[historyFlag];
-      let skin = localStorage.getItem(`${backSnip}Sk`);
-      let theme = localStorage.getItem(`${backSnip}Th`);
-      let lang = localStorage.getItem(`${backSnip}La`);
-      $(`.input-field-title`).val(`${backSnip}`);
-      editor.session.setValue(`${localStorage.getItem(backSnip)}`);
-      $(`#lang`).text(lang);
-      $(`#theme`).attr(`href`, skin);
-      editor.setTheme(theme);
-      if (lang === `js`) {
-        editor.session.setMode("ace/mode/javascript")
-      } else {
-        editor.session.setMode(`ace/mode/${lang}`)
-      }
+      backArrow();
     } 
     if (e.target.className === `forward`) {
-      historyFlag++;
-      if (historyFlag > (history.length - 1)) {
-        historyFlag = history.length - 1;
-      }
-      let forwardSnip = history[historyFlag];
-      let skin = localStorage.getItem(`${forwardSnip}Sk`);
-      let theme = localStorage.getItem(`${forwardSnip}Th`);
-      let lang = localStorage.getItem(`${forwardSnip}La`);
-      $(`.input-field-title`).val(`${forwardSnip}`);
-      editor.session.setValue(`${localStorage.getItem(forwardSnip)}`);
-      $(`#lang`).text(lang);
-      $(`#theme`).attr(`href`, skin);
-      editor.setTheme(theme);
-      if (lang === `js`) {
-        editor.session.setMode("ace/mode/javascript")
-      } else {
-        editor.session.setMode(`ace/mode/${lang}`)
-      }
+      forwardArrow();
     }
   };
   const runCode = function(e) {
@@ -284,9 +246,9 @@ $(document).ready(function() {
   $(`.store-btn`).on(`click`, save);
   $(`.get-btn`).on('click', get);
   $(`.delete-btn`).on('click', deleteSnippet);
-  $(`#gquiv`).on('click', changeSkin);
+  $(`#gquiv`).on('click', changeSkin());
   $(`#dot`).on('click', changeCodepen());
-  $(`#lang`).on('click', changeLang);
+  $(`#lang`).on('click', changeLang());
   $(`#forward-arrow`).on('click', getHistory);
   $(`#back-arrow`).on('click', getHistory);
   $(`.input-field-title`).on('keypress', pressEnter);
