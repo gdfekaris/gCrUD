@@ -1,7 +1,33 @@
 $(document).ready(function() {
-
   let historyFlag = 0;
   let history = [];
+  /*
+  let settings = {
+    skins: [
+      `lavenderStyles.css`,
+      `titaniumStyles.css`,
+      `marineStyles.css`,
+      `cobaltStyles.css`,
+      `ulysses3XStyles.css`,
+      `redGraphiteStyles.css`
+    ],
+    themes: [
+      `ace/theme/dracula`,
+      `ace/theme/monokai`,
+      `ace/theme/chrome`,
+      `ace/theme/twilight`,
+      `ace/theme/tomorrow_night_blue`,
+      `ace/theme/terminal`,
+      `ace/theme/mono_industrial`,
+      `ace/theme/kuroir`
+    ],
+    languages: [
+      `ace/mode/javascript`,
+      `ace/mode/html`,
+      `ace/mode/css`
+    ]
+  };
+  */
 
   $(`#gquiv`).css( 'cursor', 'pointer' );
   $(`#dot`).css( 'cursor', 'pointer' );
@@ -44,7 +70,6 @@ $(document).ready(function() {
       editor.setValue(`${manual}`);
       save();
     } else {
-      let historyArray = localStorage.getItem(`gquivSnippets`);
       history = JSON.parse(localStorage.getItem(`gquivSnippets`));
       historyFlag = history.length; 
     }
@@ -54,19 +79,25 @@ $(document).ready(function() {
     let skin = localStorage.getItem(`${userFile}Sk`);
     let theme = localStorage.getItem(`${userFile}Th`);
     let lang = localStorage.getItem(`${userFile}La`);
-    let code = localStorage.getItem(userFile);
     $(`.input-field-title`).val(`${userFile}`);
-    editor.session.setValue(`${code}`);
     if ((localStorage[userFile] === undefined) || (userFile === `//get key`) || (userFile === ``)) {
       $(`#theme`).attr(`href`, `lavenderStyles.css`);
       $(`#lang`).text(`js`);
       editor.setTheme(`ace/theme/dracula`);
       editor.session.setMode("ace/mode/javascript");
+      editor.session.setValue(`null`);
       if ((userFile === `//get key`) || (userFile === ``)) {
         editor.setValue(`//your code here`);
       }
       historyFlag = history.length;
     } else if (localStorage[userFile] !== undefined) {
+      let code = localStorage.getItem(userFile);
+      editor.session.setValue(`${code}`);
+      if (lang === `js`) {
+        editor.session.setMode(`ace/mode/javascript`)
+      } else {
+        editor.session.setMode(`ace/mode/${lang}`)
+      }
       $(`#theme`).attr(`href`, skin);
       editor.setTheme(theme);
       $(`#lang`).text(lang);
@@ -75,11 +106,6 @@ $(document).ready(function() {
           historyFlag = i;
         }
       })
-    }
-    if ((lang === `js`) && (localStorage[userFile] !== undefined)) {
-      editor.session.setMode("ace/mode/javascript")
-    } else {
-      editor.session.setMode(`ace/mode/${lang}`)
     }
     $(`.input-field-get`).val(``);
   };
