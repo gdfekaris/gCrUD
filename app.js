@@ -78,6 +78,7 @@ $(document).ready(function() {
       editor.setValue(`${manual}`);
       save();
     } else {
+      localStorage['gquiv-manual'] = manual;
       history = JSON.parse(localStorage.getItem(`gquivSnippets`));
       historyFlag = history.length; 
     }
@@ -192,12 +193,18 @@ $(document).ready(function() {
   const pressEnter = function (e) {
     if((e.which === 13) && (e.target.className === `input-field-title`)){
       save();
+      $(`.store-btn`).hide();
+      setTimeout(function(){$(`.store-btn`).show();},25)
     }
     if((e.which === 13) && (e.target.className === `input-field-get`)){
       get();
+      $(`.get-btn`).hide();
+      setTimeout(function(){$(`.get-btn`).show();},25)
     }
     if((e.which === 13) && (e.target.className === `input-field-delete`)){
       deleteSnippet();
+      $(`.delete-btn`).hide();
+      setTimeout(function(){$(`.delete-btn`).show();},25)
     }
   };
   const backArrow = function () {

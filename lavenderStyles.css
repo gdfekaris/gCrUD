@@ -86,7 +86,27 @@ body {
   right: 8px;
   left: 8px;
 }
-.input-field-title{
+
+.emptyA {
+  grid-area: aA;
+  justify-self: left;
+  width: 135px;
+  height: 39px;
+}
+.emptyB {
+  grid-area: aA;
+  justify-self: right;
+  width: 135px;
+  height: 39px;
+}
+.emptyC {
+  grid-area: aB;
+  justify-self: right;
+  width: 135px;
+  height: 39px;
+}
+
+.input-field-title {
   grid-area: bA;
   justify-self: left;
   margin-top: 0px;
